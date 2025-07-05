@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milestone 1: Your Local AI Build Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #004AAD;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .step-arrow {
+            font-size: 2rem;
+            color: #41C9E2;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-[#004AAD] to-[#008DDA] text-white">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight">Build Your Own Local AI</h1>
+            <p class="text-xl md:text-2xl text-[#ACE2E1] mt-4">A visual guide to completing Milestone 1.</p>
+        </header>
+
+        <section id="preflight-check" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">Section 1: Pre-Flight Checklist</h2>
+            <p class="text-lg text-center text-[#ACE2E1] mb-8 max-w-3xl mx-auto">Before starting, ensure your system is ready. This chart compares the minimum and recommended hardware specifications for a smooth experience. More is always better when it comes to running AI models locally.</p>
+            <div class="glass-card rounded-xl shadow-2xl p-6">
+                <div class="chart-container">
+                    <canvas id="requirementsChart"></canvas>
+                </div>
+                 <p class="text-center text-sm text-[#ACE2E1] mt-4">💡 Meeting the recommended specs, especially for RAM, will significantly improve model performance and prevent system slowdowns.</p>
+            </div>
+        </section>
+
+        <section id="software-stack" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">Section 2: Your AI Toolkit</h2>
+            <p class="text-lg text-center text-[#ACE2E1] mb-8 max-w-3xl mx-auto">This project uses a "stack" of three key applications. Pinokio acts as the installer and manager for Ollama (the model server) and Open WebUI (the chat interface). Here’s how they fit together.</p>
+            <div class="flex flex-col md:flex-row justify-center items-center md:items-stretch space-y-8 md:space-y-0 md:space-x-8 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="glass-card rounded-xl shadow-lg p-6 w-64 h-full flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold">Pinokio</h3>
+                        <p class="text-[#ACE2E1] mb-4">The App Store for AI</p>
+                        <a href="https://pinokio.computer/" target="_blank" class="bg-[#41C9E2] text-[#004AAD] font-bold py-2 px-4 rounded-lg hover:bg-white transition-colors">Get Pinokio</a>
+                    </div>
+                    <div class="step-arrow mt-4">⬇️</div>
+                </div>
+                 <div class="flex flex-col items-center">
+                    <div class="glass-card rounded-xl shadow-lg p-6 w-64 h-full flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold">Ollama</h3>
+                        <p class="text-[#ACE2E1] mb-4">The Local LLM Runner</p>
+                        <a href="https://ollama.com/" target="_blank" class="bg-[#41C9E2] text-[#004AAD] font-bold py-2 px-4 rounded-lg hover:bg-white transition-colors">Learn More</a>
+                    </div>
+                     <div class="step-arrow mt-4">⬇️</div>
+                </div>
+                 <div class="flex flex-col items-center">
+                    <div class="glass-card rounded-xl shadow-lg p-6 w-64 h-full flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold">Open WebUI</h3>
+                        <p class="text-[#ACE2E1] mb-4">The Chat Interface</p>
+                        <a href="https://docs.openwebui.com/" target="_blank" class="bg-[#41C9E2] text-[#004AAD] font-bold py-2 px-4 rounded-lg hover:bg-white transition-colors">See Docs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="build-process" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">Section 3: The Build Process</h2>
+            <p class="text-lg text-center text-[#ACE2E1] mb-8 max-w-3xl mx-auto">Follow this five-step process to get your local AI running. Each step builds upon the last, from initial installation to your final knowledge-base query.</p>
+            
+            <div class="space-y-8">
+                <div class="glass-card rounded-xl p-6 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2"><span class="text-[#41C9E2]">Step 1 & 2:</span> Install the Toolchain</h3>
+                    <p class="text-[#ACE2E1]">Use the Pinokio browser to find and install Ollama first, then Open WebUI. Launch both and ensure you can access them at `http://localhost:11434` (for Ollama) and `http://localhost:3000` (for Open WebUI).</p>
+                </div>
+
+                <div class="text-center text-4xl text-[#41C9E2]">↓</div>
+
+                <div class="glass-card rounded-xl p-6 shadow-lg md:grid md:grid-cols-2 md:gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2"><span class="text-[#41C9E2]">Step 3:</span> Pull a Model</h3>
+                        <p class="text-[#ACE2E1]">You need a model to chat with. Use the command line to pull one via Ollama. Llama 3 8B is recommended, but smaller alternatives like Phi-3 are great for systems with less RAM. This chart shows their approximate download sizes.</p>
+                    </div>
+                    <div class="chart-container mt-6 md:mt-0">
+                        <canvas id="modelSizeChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="text-center text-4xl text-[#41C9E2]">↓</div>
+
+                <div class="glass-card rounded-xl p-6 shadow-lg">
+                     <h3 class="text-2xl font-bold mb-2"><span class="text-[#41C9E2]">Step 4:</span> First Chat & RAG</h3>
+                     <p class="text-[#ACE2E1] mb-4">Now for the fun part. In Open WebUI, start a chat and test your model. Then, upload the `Glossary-of-AI-Terms.pdf` to the knowledge base and use the RAG feature to ask questions about its content. This is where you'll take your two required screenshots.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="submission" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">Section 4: Your Submission Package</h2>
+            <p class="text-lg text-center text-[#ACE2E1] mb-8 max-w-3xl mx-auto">Your final submission is a `.zip` file containing four key artifacts. Each artifact is an essential piece of evidence demonstrating your work. The chart below breaks down the components of your submission.</p>
+            <div class="glass-card rounded-xl shadow-2xl p-6 md:grid md:grid-cols-2 md:gap-8 items-center">
+                 <div class="chart-container">
+                    <canvas id="submissionChart"></canvas>
+                </div>
+                <div class="text-[#ACE2E1] text-left mt-6 md:mt-0">
+                    <ul class="space-y-4">
+                        <li><strong class="text-white">📸 milestone1_chat.png:</strong> Your first successful conversation with the model.</li>
+                        <li><strong class="text-white">📄 milestone1_rag.png:</strong> The answer to your glossary query, showing the RAG feature works.</li>
+                        <li><strong class="text-white">✍️ milestone1_reflection.md:</strong> A 200-word reflection on your experience.</li>
+                        <li><strong class="text-white">⚙️ openwebui_settings.json:</strong> An export of your final WebUI configuration.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="grading" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">Section 5: Grading & Getting Help</h2>
+            <p class="text-lg text-center text-[#ACE2E1] mb-8 max-w-3xl mx-auto">Success is measured by a functional setup and thoughtful reflection. This chart shows how points are allocated. If you get stuck, use the troubleshooting tips or ask for help on Discord!</p>
+             <div class="glass-card rounded-xl shadow-2xl p-6">
+                <div class="chart-container">
+                    <canvas id="gradingChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-[#ACE2E1] py-8">
+            <p>Good luck, and have fun becoming a local-AI power user!</p>
+            <p class="text-sm mt-2">Generated on July 5, 2025</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const chartTooltipPlugin = {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        } else {
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        const chartColors = ['#41C9E2', '#ACE2E1', '#008DDA', '#FFFFFF'];
+        const gridColor = 'rgba(172, 226, 225, 0.2)';
+
+        function wrapLabel(str, max = 16) {
+            if (str.length <= max) return str;
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > max) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines.filter(line => line.length > 0);
+        }
+
+        const requirementsCtx = document.getElementById('requirementsChart').getContext('2d');
+        new Chart(requirementsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['RAM (GB)', 'Disk (GB)', 'CPU Cores'],
+                datasets: [{
+                    label: 'Minimum',
+                    data: [8, 15, 4],
+                    backgroundColor: chartColors[0],
+                    borderColor: chartColors[0],
+                    borderWidth: 1
+                }, {
+                    label: 'Recommended',
+                    data: [16, 30, 6],
+                    backgroundColor: chartColors[1],
+                    borderColor: chartColors[1],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: chartColors[3] },
+                        grid: { color: gridColor }
+                    },
+                    x: {
+                        ticks: { color: chartColors[3] },
+                        grid: { color: 'transparent' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: chartColors[3] } },
+                    ...chartTooltipPlugin
+                }
+            }
+        });
+
+        const modelSizeCtx = document.getElementById('modelSizeChart').getContext('2d');
+        new Chart(modelSizeCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Llama 3 (8B)', 'Mistral (7B)', 'Phi-3 (Mini)'],
+                datasets: [{
+                    label: 'Download Size (GB)',
+                    data: [4.7, 4.1, 2.3],
+                    backgroundColor: chartColors,
+                    borderColor: '#004AAD',
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: { position: 'top', labels: { color: chartColors[3] } },
+                    title: { display: true, text: 'Approx. Model Download Size (GB)', color: chartColors[3] },
+                    ...chartTooltipPlugin
+                }
+            }
+        });
+        
+        const submissionCtx = document.getElementById('submissionChart').getContext('2d');
+        new Chart(submissionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Chat Screenshot', 'RAG Screenshot', 'Reflection', 'Config File'],
+                datasets: [{
+                    data: [1, 1, 1, 1],
+                    backgroundColor: chartColors,
+                    borderColor: '#004AAD',
+                    hoverOffset: 4
+                }]
+            },
+             options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Four Submission Artifacts', color: chartColors[3] },
+                    ...chartTooltipPlugin
+                }
+            }
+        });
+
+        const gradingCtx = document.getElementById('gradingChart').getContext('2d');
+        new Chart(gradingCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel('Tool-chain installed & running'),
+                    wrapLabel('Knowledge-base query works'),
+                    wrapLabel('System prompt & hyper-param experiments'),
+                    wrapLabel('Reflection demonstrates insight')
+                ],
+                datasets: [{
+                    label: 'Points',
+                    data: [8, 4, 4, 4],
+                    backgroundColor: chartColors,
+                    borderColor: chartColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                     y: {
+                        beginAtZero: true,
+                        ticks: { color: chartColors[3], font: { size: 10 } },
+                        grid: { color: 'transparent' }
+                    },
+                    x: {
+                        ticks: { color: chartColors[3] },
+                        grid: { color: gridColor }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Grading Rubric (20 Points Total)', color: chartColors[3] },
+                    ...chartTooltipPlugin
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
